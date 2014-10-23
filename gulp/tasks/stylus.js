@@ -4,7 +4,7 @@ var changed = require('gulp-changed');
 var nib = require('nib');
 
 gulp.task('stylus', function() {
-  var dest = 'public/build'
+  var dest = 'www/css'
 
   return gulp.src('css/main.styl')
     .pipe(changed(dest))

@@ -6,7 +6,7 @@ var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 
 gulp.task('browserify', function() {
-  var dest = './public/build';
+  var dest = './www/js';
 
   var bundler = browserify({
     // Required watchify args

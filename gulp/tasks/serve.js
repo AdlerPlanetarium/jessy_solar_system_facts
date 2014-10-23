@@ -1,15 +1,21 @@
 var gulp = require('gulp')
 var static = require('node-static');
+var o = require('open');
+var ripple = require('ripple-emulator');
 
-gulp.task('serve', function(){
-  var file = new static.Server('./public/build');
-  var port = 3333
+var options = {
+       keepAlive: false,
+       open: true,
+       port: 4400
+      //  path: 'platforms/ios/www/'
+};
 
-  require('http').createServer(function (request, response) {
-      request.addListener('end', function () {
-          file.serve(request, response);
-      }).resume();
-  }).listen(3333);
+gulp.task('serve', ['watch', 'setWatch'], function(){
 
-  console.log("server started on port", port);
+  ripple.emulate.start(options);
+
+  if (options.open) {
+      o('http://localhost:' + options.port + '?enableripple=cordova-3.0.0');
+  }
+
 });
