@@ -6,5 +6,7 @@ var gulp   = require('gulp');
 
 gulp.task('watch', ['setWatch'], function() {
     gulp.watch('css/**/*.styl', ['stylus']);
-    gulp.watch('www/index.html', ['html']);
+    gulp.watch('index.html', ['index']);
+    gulp.watch('videos/*.m4v', ['videos']);
+    gulp.watch('www/**.*', ['cordova_prepare'])
 });
