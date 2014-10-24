@@ -1,21 +1,26 @@
+React  = require('react')
+{ Routes, Route, Link, DefaultRoute } = require('react-router')
+
+BeaconController      = require('./BeaconController')
+IntroController       = require('./IntroController')
+InstructionsController = require('./InstructionsController')
+ScanContoller         = require('./ScanController')
+
 App = React.createClass
   displayName: 'App'
 
   getInitialState: ->
-    alert("inital state is awsome")
     events: []
 
   render: ->
-    <div className="app">
-      <div className="site-navigation">
-        <Link to="app">Home</Link>
-        <Link to="import">Import Event</Link>
-        <Link to="events">View Events</Link>
-      </div>
-      <div className="app-container">
-        <@props.activeRouteHandler/>
-      </div>
-      <div className="site-footer"></div>
+    <div>
+      <Routes>
+        <Route path="/beacon/:id"     name="beacon"         handler={BeaconController} />
+        <Route path="/"               name="intro"          handler={IntroController} />
+        <Route path="/instructions"   name="instructions"   handler={InstructionsController} />
+        <Route path="/scan"           name="scan"           handler={ScanContoller} />
+      </Routes>
     </div>
 
-module.exports= App
+React.renderComponent App(null), document.body
+window.React = React
